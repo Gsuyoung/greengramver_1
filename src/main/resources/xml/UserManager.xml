@@ -5,5 +5,14 @@
 
 <mapper namespace="com.green.greengramver1.user.UserMapper">
 
+    <insert id="insUser">
+        INSERT INTO user
+        SET uid = #{uid},
+        upw = #{upw},
+        nick_name = #{nickName},
+        pic = #{pic}
+    </insert>
+
+
 
 </mapper>
