@@ -2,9 +2,10 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="com.green.greengramver1.user.UserMapper">
-
+            <!-- keyProperty = "userId" : pk가 만들어지면 그 값을 담을 공간
+            담을 공간을 만들기위해서는 멤버필드에 선언해 주어야한다.
+            private long userId(UserInsReq 안에)-->
     <insert id="insUser" useGeneratedKeys="true" keyProperty="userId">
         INSERT INTO user
         SET uid = #{uid},
@@ -12,6 +13,12 @@
         nick_name = #{nickName},
         pic = #{pic}
     </insert>
+
+    <select id="selUserForSignIn">
+        SELECT user_id AS userId, nick_name AS nickName, pic, upw
+        FROM user
+        WHERE uid = #{uid}
+    </select>
 
 
 

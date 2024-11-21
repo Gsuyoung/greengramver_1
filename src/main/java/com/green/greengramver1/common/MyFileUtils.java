@@ -45,8 +45,9 @@ public class MyFileUtils {
         return makeRandomFileName() + getExt(originalFileName);
     }
 
+    //MultipartFile 타입 은 프론트에서 사진을 받기위해 사용(처리를 다르게해야한다.)
     public String makeRandomFileName(MultipartFile file) {
-        return makeRandomFileName(file.getOriginalFilename());
+        return makeRandomFileName(file.getOriginalFilename()); // OriginalFilename을 부른이유 : 확장자를 얻기위해서
     }
 
     //파일을 원하는 경로에 저장

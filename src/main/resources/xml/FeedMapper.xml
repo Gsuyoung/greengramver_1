@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.green.greengramver1.feed.FeedMapper">
+    <insert id="insFeed" useGeneratedKeys="true" keyProperty="feedId"> <!-- useGeneratedKeys="true" 가 의미하는건 pk값을 가져올건지 안가져올건지 정해주는것,
+     기본적으로 false 로 들어가있다.-->
+        INSERT INTO feed
+        SET  writer_user_id=#{userId}
+        ,contents=#{contents}
+        ,location=#{location}
+    </insert>
+
+    <insert id="insFeedPic">
+        INSERT INTO feed_pics
+        SET  feed_id=#{feedId}
+        ,pic=#{pic}
+    </insert>
+
+</mapper>
