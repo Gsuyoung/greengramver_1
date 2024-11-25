@@ -1,6 +1,8 @@
 package com.green.greengramver1.user;
 
 import com.green.greengramver1.common.MyFileUtils;
+import com.green.greengramver1.feed.model.FeedGetReq;
+import com.green.greengramver1.feed.model.FeedGetRes;
 import com.green.greengramver1.user.model.UserSignInReq;
 import com.green.greengramver1.user.model.UserSignInRes;
 import com.green.greengramver1.user.model.UserSignUpReq;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -38,7 +41,7 @@ public class UserService {
         //insert하자마자 우리는 pk값을 얻어올수있다. 그 작업은 mapper에서한다.
         //영향받은 행 값만 나타낸다.
 
-        if(pic == null) {
+        if(pic == null) { //savedPicName이 null일수도있고 아닐수도있어서 null이 아닌경우만 아래부분이 작동될수있도록
             return result;
         }
         //저장 위치를 만든다.
@@ -48,7 +51,8 @@ public class UserService {
         String middlePath = String.format("user/%d",userId);
         myFileUtils.makeFolders(middlePath); //폴더를 만든다.
         log.info("middlePath: {}", middlePath);
-        String filePath = String.format("%s/%s", middlePath, savedPicName);
+        String filePath = String.format("%s/%s", middlePath, savedPicName); //<-- ( middlepath아래에 파일명 )
+        //UUID를 이용해서 숫자나 영어로 이루어진 랜덤 파일내임을 만들겠다.(savedPicname)
         try {
             myFileUtils.transferTo(pic, filePath);
         } catch (IOException e){

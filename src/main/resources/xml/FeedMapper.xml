@@ -18,5 +18,25 @@
         SET  feed_id=#{feedId}
         ,pic=#{pic}
     </insert>
+    
+    <select id="selFeedList">
+        SELECT  B.feed_id AS feedId, A.user_id AS writerId, A.nick_name AS nickName,
+        B.contents, B.location, B.created_at AS createdAt,
+        IF(A.nick_name IS NULL, A.uid, A.nick_name) AS writerNm,
+        A.pic AS writerPic
+        FROM USER A
+        INNER JOIN feed B
+        ON B.writer_user_id = A.user_id
+        ORDER BY B.feed_id DESC
+        LIMIT #{startIdx}, #{size}
+    </select>
+
+    <!-- ///////////////////////////////////feed pics ///////////////////////////////// -->
+
+    <select id="selFeedPicList">
+        SELECT pic
+        FROM feed_pics
+        WHERE feed_id = #{feedId}
+    </select>
 
 </mapper>

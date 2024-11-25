@@ -19,7 +19,4 @@
         FROM user
         WHERE uid = #{uid}
     </select>
-
-
-
 </mapper>

@@ -2,7 +2,6 @@
 file:
     directory: D:/GSY/download/greengram_ver1
 
-
 # mybatis setting
 mybatis:
     mapper-locations: xml/**/*.xml
