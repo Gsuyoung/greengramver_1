@@ -33,11 +33,11 @@ public class FeedController {
                 .build();
     }
     /*
-    QueryString 방식 - URL(중요한 단어!!)에 KEY, VALUE값을 포함하여 보내는 방식
-     */
-
-    @GetMapping //Get일때 프론트가 밴앤드로 보낼때 : 쿼리스트링방식(@ModelAttribute가 붙는다.)
-    //SWAGGER문서상 보여지기위해 ParameterObjet 사용
+        QueryString 방식 - body를 사용하는것이 아닌 URL(중요한 단어!!)에 KEY, VALUE값을 포함하여 보내는 방식
+        작성방법 : url?key=value&key=value(?가 시작) url에는 절대 빈칸불가
+    */
+    @GetMapping //Get방식 - 프론트가 밴앤드로 보낼때 : 쿼리스트링방식(@ModelAttribute가 붙는다.)
+             //SWAGGER문서상 보여지기위해(테스트하기 용이하다.) ParameterObjet 사용(없다면 JSON형태로 나온다.)
     public ResultResponse<List<FeedGetRes>> getFeedList(@ParameterObject @ModelAttribute FeedGetReq p) {
         log.info("p: {}", p);
         List<FeedGetRes> list = service.getFeedList(p);

@@ -57,7 +57,7 @@ public class FeedService {
     }
 
     public List<FeedGetRes> getFeedList(FeedGetReq p) {
-        List<FeedGetRes> list = mapper.selFeedList(p);
+        List<FeedGetRes> list = mapper.selFeedList(p); //list최대 사이즈 : #{size}
         //사진 매핑
         for (FeedGetRes res : list) {
              //DB에서 각 피드에 맞는 사진 정보를 가져온다.
